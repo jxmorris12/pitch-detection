@@ -10,9 +10,8 @@ var findPitch = function(myAudioBuffer) {
   const float32Array = myAudioBuffer.getChannelData(0); // get a single channel of sound
   console.log('float32Array:', float32Array);
   const pitch = detectPitch(float32Array); // null if pitch cannot be identified
+  $('#pitch').text(noteFromPitch(pitch) || 'no pitch detected');
   drawAudioChart(float32Array);
-  console.log('pitch:', pitch);
-  $('#pitch').text(pitch || 'no pitch detected');
 }
 
 var drawAudioChart = function(float32Array) {
@@ -86,6 +85,37 @@ var arrayBufferToFloat32Array = function(buffer) { // incoming data is an ArrayB
         outputData[i] = (incomingData[i] - 128) / 128.0; // convert audio to float
     }
     return outputData; // return the Float32Array
+}
+
+var noteFromPitch = function(pitch) {
+  if(!pitch) {
+    return pitch;
+  }
+
+  let minDiffNote = '?';
+  let minDiff = 100000;
+
+  const stringFreqs = {
+      'e2': 82.4069,
+      'a2': 110,
+      'd3': 146.832,
+      'g3': 195.998,
+      'b3': 246.932,
+      'e4': 329.628,
+    };
+
+  for(var note in stringFreqs) {
+    const freq = stringFreqs[note];
+    const freqDiff = Math.abs(freq - pitch);
+    if (freqDiff < minDiff) {
+      minDiff = freqDiff;
+      minDiffNote = note;
+    }
+  }
+
+  const error = minDiff * 100.0 / pitch;
+
+  return minDiffNote + '(' + pitch + ' Hz)' + '[' + error + '%]';
 }
 
 function sendData(data) { console.log('sendData', data); }
