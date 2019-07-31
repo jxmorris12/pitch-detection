@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title> Pitch Detection Demo </title>
+    <!-- <Bootstrap CSS> -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <Bootstrap JS> -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <Plotly JS> -->
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body style="padding: 40px">
+    <div class="jumbotron">
+      <h1> Pitch Detection </h1>
+    </div>
+    <div class="row text-center">
+      <div class="col-8 offset-2">
+        <h4> Record Audio </h4>
+        <button id="recordButton" class="startRecordButton mb-3"></button>
+        <br>
+	      <audio id=recordedAudio></audio>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <div style="width:100%%;" id="chartBox">
+          <div id="audioChart" style="width:100%;height:350px;"></div>
+      	</div>
+      </div>
+    </div>
+    <div class="row mt-4 text-center">
+      <div class="col-8 offset-2">
+        <h4> Pitch Detected </h4>
+        <p id="pitch">?</p>
+      </div>
+    </div>
+  </body>
+  <!-- <My CSS> -->
+  <style>
+    #recordButton {
+      width: 40px;
+      height: 40px;
+      border: 5px solid black;
+    }
+    .startRecordButton {
+      border-radius: 50%;
+      background: red;
+    }
+    .stopRecordButton {
+      background: darkgray;
+      border-radius: 0;
+    }
+
+    #pitch {
+      color: #444;
+      font-weight: bolder;
+      font-family: monospace;
+      font-size: 24px;
+      background: #eee;
+    }
+  </style>
+  <!-- <My JS> -->
+  <script src="bundle.js"></script>
+</html>
